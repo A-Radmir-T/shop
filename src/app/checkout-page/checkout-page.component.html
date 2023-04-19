@@ -1,0 +1,109 @@
+<div class="wrapper">
+  <div class="content">
+    <header class="header">
+      <div class="container">
+        <div class="header__inner">
+          <div class="header__logo" routerLink="/">
+            <img src="./assets/log.png" alt="">
+          </div>
+        </div>
+      </div>
+    </header>
+    <main class="main">
+      <div class="container">
+        <div class="basket">
+          <div class="container">
+            <form class="basket__grid" [formGroup]="form" (ngSubmit)="submit()">
+
+              <div class="message" *ngIf="message">
+                <span>
+                    {{ message }}
+                </span>
+                <mat-icon>thumb_up</mat-icon>
+              </div>
+
+              <div *ngIf="!message" class="basket__orders orders">
+                <div class="basket__title">
+                  <h2>Оформить заказ</h2>
+                </div>
+
+                <div class="form__control">
+                  <label for="name">Имя:</label>
+                  <div class="validation" *ngIf="form.get('name')?.touched && form.get('name')?.errors?.['required']">
+                    <small>Это поле обязательно для заполнения</small>
+                  </div>
+                  <input type="text" id="name" formControlName="name" autofocus>
+                </div>
+                <div class="form__control">
+                  <label for="phone">Телефон:</label>
+                  <div class="validation" *ngIf="form.get('phone')?.touched && form.get('phone')?.errors?.['required']">
+                    <small>Это поле обязательно для заполнения</small>
+                  </div>
+                  <input type="tel" id="phone" formControlName="phone" autocomplete="off" maxlength="11">
+                </div>
+
+                <div class="form__control">
+                  <label for="address">Адрес доставки:</label>
+                  <div class="validation"
+                       *ngIf="form.get('address')?.touched && form.get('address')?.errors?.['required']">
+                    <small>Это поле обязательно для заполнения</small>
+                  </div>
+                  <input type="text" id="address" formControlName="address" autocomplete="off">
+                </div>
+
+                <div class="checkout__btn">
+
+                  <div class="card__total">
+                    Сумма к оплате: {{ sum }} руб
+                  </div>
+
+                  <button
+                    class="card__btn"
+                    type="submit"
+                    [disabled]="form.invalid"
+                  >
+                    Оформить
+                  </button>
+                </div>
+
+              </div>
+
+
+              <div class="checkout__card">
+                <h3 class="checkout__title"> Ваш заказ:</h3>
+                <div class="checkout__item" *ngFor="let order of orders">
+
+                  <div class="checkout__product">
+                    <h3 class="checkout__title">{{ order.title }}</h3>
+                    <div class="checkout__image">
+                      <quill-view-html [content]="order.image"></quill-view-html>
+                    </div>
+
+                  </div>
+
+
+                  <div class="checkout__count">
+                    <div class="checkout__amount">{{ order.count }} шт</div>
+                    <p class="checkout__price">
+                      {{ order.price * order.count }} руб
+                    </p>
+
+                  </div>
+
+
+                </div>
+
+
+              </div>
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+
+
+

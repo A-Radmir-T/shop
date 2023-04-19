@@ -1,0 +1,58 @@
+<div class="wrapper">
+  <div class="content">
+    <header class="header">
+      <div class="container">
+        <div class="header__inner">
+          <div class="header__logo" routerLink="/">
+            <img src="./assets/log.png" alt="">
+          </div>
+          <a class="header__user" [routerLink]="['/admin', 'login']">
+            <div>
+              <mat-icon>person</mat-icon>
+            </div>
+            <span>Войти</span>
+          </a>
+          <a class="header__cart" [routerLink]="['/basket']">
+            <div >
+              <mat-icon>shopping_basket</mat-icon>
+            </div>
+            <div class="header__cart-info" *ngIf="count > 0">
+              <p>{{ count }}</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </header>
+    <main class="main">
+      <div class="container">
+        <nav class="nav">
+          <ul class="nav__list">
+            <li>
+              <a [routerLink]="['/menu', 'set']" routerLinkActive="active">Сеты</a>
+            </li>
+            <li>
+              <a [routerLink]="['/menu', 'sushi']" routerLinkActive="active">Роллы и Суши</a>
+            </li>
+            <li>
+              <a [routerLink]="['/menu', 'wok']" routerLinkActive="active">WOK</a>
+            </li>
+            <li>
+              <a [routerLink]="['/menu', 'dessert']" routerLinkActive="active">Десерты</a>
+            </li>
+            <li>
+              <a [routerLink]="['/menu', 'drink']" routerLinkActive="active">Напитки</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+      <mat-progress-bar *ngIf="productService.loading" mode="indeterminate"></mat-progress-bar>
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+  <div class="footer">
+    <div class="container">
+      <span>© Суши Сет. Все права защищены</span>
+    </div>
+  </div>
+</div>
+

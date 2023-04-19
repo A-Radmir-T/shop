@@ -1,0 +1,9 @@
+<div class="menu">
+  <div class="container">
+    <div class="menu__products"*ngIf="byCategories">
+      <div class="product__wrapper" *ngFor="let product of byCategories">
+        <app-product [product]="product"></app-product>
+      </div>
+    </div>
+  </div>
+</div>

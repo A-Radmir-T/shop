@@ -1,0 +1,69 @@
+<div class="wrapper">
+  <div class="content">
+    <header class="header">
+      <div class="container">
+        <div class="header__inner">
+          <div class="header__logo" routerLink="/">
+            <img src="./assets/log.png" alt="">
+          </div>
+          <nav class="header__nav" *ngIf="authService.isAuthenticated()">
+            <ul>
+              <li>
+                <a [routerLink]="['/admin', 'create']" routerLinkActive="active">Создать</a>
+              </li>
+              <li>
+                <a [routerLink]="['/admin', 'dashboard']" routerLinkActive="active">Главная</a>
+              </li>
+              <li>
+                <a [routerLink]="['/admin', 'orders']" routerLinkActive="active">Заказы</a>
+              </li>
+            </ul>
+          </nav>
+          <div class="header__user" *ngIf="authService.isAuthenticated()">
+            <button
+              class="btn btn-danger"
+              type="button"
+              (click)="logout()"
+            >
+              Выйти
+            </button>
+            <span></span>
+          </div>
+        </div>
+      </div>
+    </header>
+    <main class="main">
+      <div class="container">
+        <nav class="nav" *ngIf="authService.isAuthenticated()">
+          <ul class="nav__list">
+            <li>
+              <a [routerLink]="['/admin', 'menu', 'set']" routerLinkActive="active">Сеты</a>
+            </li>
+            <li>
+              <a [routerLink]="['/admin', 'menu', 'sushi']" routerLinkActive="active">Роллы и Суши</a>
+            </li>
+            <li>
+              <a [routerLink]="['/admin', 'menu', 'wok']" routerLinkActive="active">WOK</a>
+            </li>
+            <li>
+              <a [routerLink]="['/admin', 'menu', 'dessert']" routerLinkActive="active">Десерты</a>
+            </li>
+            <li>
+              <a [routerLink]="['/admin', 'menu', 'drink']" routerLinkActive="active">Напитки</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+      <mat-progress-bar *ngIf="productService.loading" mode="indeterminate"></mat-progress-bar>
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+  <div class="footer">
+    <div class="container">
+      <span>© Суши Сет. Все права защищены</span>
+    </div>
+  </div>
+</div>
+
+<app-alert></app-alert>
+

@@ -1,0 +1,50 @@
+<div class="login">
+  <div class="container">
+    <h2 class="text-center">Войти как администратор</h2>
+    <form class="login__form form" [formGroup]="form" (ngSubmit)="submit()">
+
+      <div class="alert" *ngIf="authService.error$ | async as error">
+        <p>{{ error }}</p>
+      </div>
+
+      <div class="alert" *ngIf="message">
+        <p>{{ message }}</p>
+      </div>
+
+      <div class="form__control">
+        <label for="email">Email:</label>
+        <div class="validation" *ngIf="form.get('email')?.touched && form.get('email')?.errors?.['required']">
+          <small>Введите email</small>
+        </div>
+        <div class="validation" *ngIf="form.get('email')?.touched && form.get('email')?.errors?.['email']">
+          <small>Введите корректный email</small>
+        </div>
+        <input type="email" id="email" placeholder="admin@mail.ru" formControlName="email" autofocus>
+      </div>
+
+      <div class="form__control">
+        <label for="password">Пароль:</label>
+        <div class="validation" *ngIf="form.get('password')?.touched && form.get('password')?.errors?.['required']">
+          <small>Введите пароль</small>
+        </div>
+        <div class="validation" *ngIf="form.get('password')?.touched && form.get('password')?.errors?.['minlength']">
+          <small>
+            Необходимо минимум {{ form.get('password')?.errors?.['minlength']['requiredLength'] }} символов.
+            Вы ввели: {{ form.get('password')?.errors?.['minlength']['actualLength'] }}
+          </small>
+        </div>
+        <input type="password" id="password" placeholder="123456" formControlName="password">
+
+      </div>
+
+      <button
+        class="btn btn-primary"
+        type="submit"
+        [disabled]="form.invalid || submitted"
+      >
+        Войти
+      </button>
+
+    </form>
+  </div>
+</div>

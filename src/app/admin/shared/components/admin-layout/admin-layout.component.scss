@@ -1,0 +1,24 @@
+.header__user {
+  margin: 0;
+}
+
+.header__nav {
+  margin-left: auto;
+
+  li {
+    display: inline;
+    margin-right: 40px;
+  }
+  a {
+    font-size: 20px;
+    font-weight: 500;
+    &:hover {
+      color: rgba(0, 0, 0, 0.73);
+    }
+    &.active {
+      border-bottom: 1px solid #000;
+    }
+  }
+}
+
+

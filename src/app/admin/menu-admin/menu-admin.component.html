@@ -1,0 +1,55 @@
+<div class="menu">
+  <div class="container">
+    <div class="menu__products" *ngIf="byCategories">
+      <div class="product" *ngFor="let product of byCategories">
+        <div class="product__label">
+          <p *ngIf="product.sale">
+            <span class="sale label">АКЦИЯ</span>
+          </p>
+          <p *ngIf="product.new">
+            <span class="new label">NEW</span>
+          </p>
+          <p *ngIf="product.tempura">
+            <span class="tempura label">Темпура</span>
+          </p>
+        </div>
+        <div class="product__image">
+          <quill-view-html
+            [routerLink]="['/admin', 'product', product.id, 'edit']"
+            [content]="product.image"
+          ></quill-view-html>
+        </div>
+        <div class="product__item">
+          <div class="product__info">
+            <span class="weight">{{ product.weight }} г</span>
+            <span class="amount" *ngIf="product.amount">{{ product.amount }} шт</span>
+          </div>
+          <div class="product__title">
+            <h2>{{ product.title | titlecase }}</h2>
+          </div>
+          <div class="product__composition">
+            <quill-view-html
+              [routerLink]="['/admin', 'product', product.id, 'edit']"
+              [content]="product.composition"
+            ></quill-view-html>
+          </div>
+          <div class="product__bottom">
+            <div class="product__price">
+              <p>{{ product.price }} руб</p>
+            </div>
+              <button
+                class="btn btn-primary"
+                [routerLink]="['/admin', 'product', product.id, 'edit']"
+                [disabled]="submitted"
+              >Открыть</button>
+              <button
+                class="btn btn-danger"
+                (click)="remove(product.id || '')"
+                [disabled]="submitted"
+              >Удалить</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

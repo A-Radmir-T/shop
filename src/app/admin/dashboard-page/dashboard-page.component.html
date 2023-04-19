@@ -1,0 +1,38 @@
+<div class="dashboard">
+  <div class="container">
+    <div class="slider" *ngIf="sliders">
+      <swiper-container
+        navigation="true"
+        loop="true"
+        centered-slides="true"
+
+      >
+        <swiper-slide *ngFor="let slide of sliders">
+          <div class="slider__box">
+            <quill-view-html [content]="slide.image"></quill-view-html>
+            <div class="slide__delete">
+              <a class="btn btn-danger" (click)="remove(slide.id || '')">Удалить пост</a>
+            </div>
+          </div>
+        </swiper-slide>
+      </swiper-container>
+    </div>
+
+    <form class="create__form form" [formGroup]="form" (ngSubmit)="submit()">
+      <div class="form__control form-image">
+        <label class="db" for="image">Добавить картинку:</label>
+        <quill-editor
+          id="image"
+          appLoadImage
+          formControlName="image"
+          [modules]="modules" placeholder=""
+        ></quill-editor>
+      </div>
+
+      <div class="text-center">
+        <button class="btn btn-primary" [disabled]="submitted || form.invalid">Добавить</button>
+      </div>
+
+    </form>
+  </div>
+</div>

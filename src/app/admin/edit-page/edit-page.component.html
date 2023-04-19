@@ -1,0 +1,70 @@
+<div class="edit">
+  <div class="container">
+    <div class="edit__inner" *ngIf="form">
+
+      <form class="edit__form create__form form" [formGroup]="form" (ngSubmit)="submit()">
+        <h2>Изменить продукт</h2>
+        <div class="form__control">
+          <label for="title">Название:</label>
+          <input type="text" id="title" formControlName="title">
+        </div>
+
+        <div class="form__control">
+          <mat-form-field appearance="fill">
+            <mat-label>Категория:</mat-label>
+            <mat-select formControlName="category">
+              <mat-option>--</mat-option>
+              <mat-option value="set">Сеты</mat-option>
+              <mat-option value="sushi">Роллы и суши</mat-option>
+              <mat-option value="wok">WOK</mat-option>
+              <mat-option value="dessert">Десерты</mat-option>
+              <mat-option value="drink">Напитки</mat-option>
+            </mat-select>
+            <mat-error>Выберите категорию</mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="form__control form-image">
+          <label class="db" for="image">Картинка:</label>
+          <quill-editor id="image" appLoadImage formControlName="image" [modules]="modules" placeholder=""></quill-editor>
+        </div>
+
+        <div class="form__control">
+          <section class="example-section" >
+            <h4>Дополнительные категории:</h4>
+            <p><mat-checkbox formControlName="sale">Акция</mat-checkbox></p>
+            <p><mat-checkbox formControlName="new">New</mat-checkbox></p>
+            <p><mat-checkbox formControlName="tempura">Темпура</mat-checkbox></p>
+          </section>
+        </div>
+
+        <div class="form__control">
+          <label for="weight">Вес:</label>
+          <input type="number" id="weight" formControlName="weight">
+        </div>
+
+        <div class="form__control">
+          <label for="amount">Колличество:</label>
+          <input type="number" id="amount" formControlName="amount">
+        </div>
+
+        <div class="form__control">
+          <label for="composition">Состав:</label>
+          <quill-editor id="composition" formControlName="composition"></quill-editor>
+        </div>
+
+        <div class="form__control">
+          <label for="price">Цена:</label>
+          <input autocomplete="off" type="number" id="price" formControlName="price">
+        </div>
+
+        <button
+          class="btn btn-primary"
+          type="submit"
+          [disabled]="submitted || form.invalid"
+        >Обновить</button>
+
+      </form>
+    </div>
+  </div>
+</div>

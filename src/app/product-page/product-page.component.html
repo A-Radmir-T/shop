@@ -1,0 +1,40 @@
+<div class="product-page">
+  <div class="container">
+    <a [routerLink]="" class="link-back">
+      <mat-icon>arrow_back_ios</mat-icon>
+      <span>НАЗАД</span>
+    </a>
+    <div class="item" *ngIf="product">
+      <div class="item__image">
+        <quill-view-html [content]="product.image"></quill-view-html>
+      </div>
+      <div class="item__info">
+        <div class="item__title">{{ product.title }}</div>
+        <div class="item__weight">{{ product.weight }} г</div>
+
+        <div class="item__price">
+          <div class="price">{{ product.price }} руб</div>
+          <div class="product__btn" *ngIf="count === 0">
+            <a (click)="addInBasket(product)">В корзину</a>
+          </div>
+          <div class="order__count " *ngIf="count > 0">
+            <div class="order__decrement" (click)="decrement(product.id || '')">
+              <mat-icon>remove</mat-icon>
+            </div>
+            <div class="order__amount">{{ count }} шт</div>
+            <div class="order__increment" (click)="increment(product.id || '')">
+              <mat-icon>add</mat-icon>
+            </div>
+          </div>
+        </div>
+
+        <div class="item__composition">
+          <span>Состав: </span>
+          <p><quill-view-html [content]="product.composition"></quill-view-html></p>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>

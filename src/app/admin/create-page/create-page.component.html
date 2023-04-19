@@ -1,0 +1,88 @@
+<div class="create">
+  <div class="container">
+      <div class="create__inner">
+        <form class="create__form form" [formGroup]="form" (ngSubmit)="submit()">
+          <h2>Создать продукт</h2>
+          <div class="form__control">
+            <label for="title">Название:</label>
+            <div class="validation" *ngIf="form.get('title')?.touched && form.get('title')?.errors?.['required']">
+              <small>Это поле обязательно для заполнения</small>
+            </div>
+            <input type="text" id="title" formControlName="title">
+          </div>
+
+          <div class="form__control">
+            <mat-form-field appearance="fill">
+              <mat-label>Категория:</mat-label>
+              <mat-select formControlName="category">
+                <mat-option>--</mat-option>
+                <mat-option value="set">Сеты</mat-option>
+                <mat-option value="sushi">Роллы и суши</mat-option>
+                <mat-option value="wok">WOK</mat-option>
+                <mat-option value="dessert">Десерты</mat-option>
+                <mat-option value="drink">Напитки</mat-option>
+              </mat-select>
+              <mat-error>Выберите категорию</mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="form__control form-image">
+            <label class="db" for="image">Картинка:</label>
+            <div class="validation" *ngIf="form.get('image')?.touched && form.get('image')?.errors?.['required']">
+              <small>Это поле обязательно для заполнения</small>
+            </div>
+            <quill-editor
+              id="image" appLoadImage
+              formControlName="image"
+              [modules]="modules" placeholder=""
+            ></quill-editor>
+          </div>
+
+          <div class="form__control">
+            <section class="example-section" >
+              <h4>Дополнительные категории:</h4>
+              <p><mat-checkbox formControlName="sale">Акция</mat-checkbox></p>
+              <p><mat-checkbox formControlName="new">New</mat-checkbox></p>
+              <p><mat-checkbox formControlName="tempura">Темпура</mat-checkbox></p>
+            </section>
+          </div>
+
+          <div class="form__control">
+            <label for="weight">Вес:</label>
+            <div class="validation" *ngIf="form.get('weight')?.touched && form.get('weight')?.errors?.['required']">
+              <small>Это поле обязательно для заполнения</small>
+            </div>
+            <input type="number" id="weight" formControlName="weight">
+          </div>
+
+          <div class="form__control">
+            <label for="amount">Колличество:</label>
+            <input type="number" id="amount" formControlName="amount">
+          </div>
+
+          <div class="form__control">
+            <label for="composition">Состав:</label>
+            <div class="validation" *ngIf="form.get('composition')?.touched && form.get('composition')?.errors?.['required']">
+              <small>Это поле обязательно для заполнения</small>
+            </div>
+            <quill-editor id="composition" formControlName="composition"></quill-editor>
+          </div>
+
+          <div class="form__control">
+            <label for="price">Цена:</label>
+            <div class="validation" *ngIf="form.get('price')?.touched && form.get('price')?.errors?.['required']">
+              <small>Это поле обязательно для заполнения</small>
+            </div>
+            <input autocomplete="off" type="number" id="price" formControlName="price">
+          </div>
+
+          <button
+            class="btn btn-primary"
+            type="submit"
+            [disabled]="form.invalid || submitted"
+          >Создать</button>
+
+        </form>
+      </div>
+  </div>
+</div>

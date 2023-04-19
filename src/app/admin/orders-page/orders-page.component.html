@@ -1,0 +1,56 @@
+<div class="orders">
+  <div class="container">
+
+    <table>
+
+      <thead>
+      <tr>
+        <th>#</th>
+        <th>Информация о заказчике</th>
+        <th>Заказ</th>
+        <th>Действие</th>
+      </tr>
+      </thead>
+
+      <tbody *ngIf="orders.length; else message">
+      <tr *ngFor="let order of orders; let idx = index">
+        <td>{{ idx + 1 }}</td>
+        <td>
+          <p>{{ order.name }}</p>
+          <p>{{ order.phone }}</p>
+          <p>{{ order.address }}</p>
+        </td>
+        <td>
+          <ul *ngFor="let product of order.products; let i = index">
+            <li>{{ i + 1 }}:</li>
+            <li>
+              <quill-view-html [content]="product.image"></quill-view-html>
+            </li>
+            <li>{{ product.title }}</li>
+            <li>{{ product.count}} шт</li>
+          </ul>
+        </td>
+        <td>
+          <button
+            class="btn btn-primary"
+            (click)="ready(order.id || '')"
+            [disabled]="submitted"
+          >Заказ готов</button>
+        </td>
+
+      </tr>
+      </tbody>
+      <ng-template #message>
+        <tbody >
+        <tr>
+          <p class="text-center">Пока заказов нет</p>
+        </tr>
+        </tbody>
+      </ng-template>
+
+    </table>
+
+
+
+  </div>
+</div>

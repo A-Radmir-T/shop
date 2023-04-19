@@ -1,0 +1,38 @@
+<div class="home">
+  <div class="container">
+    <div class="slider" *ngIf="sliders">
+      <swiper-container
+        autoplay-disable-on-interaction="false"
+        navigation="true"
+        loop="true"
+        autoplay-delay="3000"
+        centered-slides="true"
+      >
+        <swiper-slide *ngFor="let slide of sliders">
+          <div class="slider__box">
+            <quill-view-html [content]="slide.image"></quill-view-html>
+          </div>
+        </swiper-slide>
+      </swiper-container>
+    </div>
+
+    <div class="home__products">
+        <h2>Суши:</h2>
+        <div class="home__list" *ngIf="sets">
+          <div class="product__wrapper" *ngFor="let set of sets">
+            <app-product [product]="set"></app-product>
+          </div>
+        </div>
+      <div class="home__list" *ngIf="sushi">
+        <div  class="product__wrapper" *ngFor="let s of sushi">
+          <app-product [product]="s"></app-product>
+        </div>
+      </div>
+      <div class="home__list" *ngIf="woks">
+        <div  class="product__wrapper" *ngFor="let wok of woks">
+          <app-product [product]="wok"></app-product>
+        </div>
+      </div>
+
+    </div>
+  </div>

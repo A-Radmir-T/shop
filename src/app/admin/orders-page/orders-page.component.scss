@@ -1,0 +1,50 @@
+table {
+  max-width: 1000px;
+  width: 100%;
+  margin: 0 auto;
+  border-collapse: collapse;
+}
+
+tr {
+  border-bottom: 1px solid #ccc;
+}
+
+table th,
+table td {
+  padding: 1rem;
+  text-align: left;
+  font-weight: 500;
+}
+
+table th {
+  background: #f4f4f4;
+}
+
+tbody {
+  border-bottom: 1px solid #ccc;
+  .ql-snow .ql-editor img {
+    max-width: 60px;
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+  ul {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px dashed #ccc;
+  }
+  li {
+    display: inline-block;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    text-align: center;
+    font-size: 16px;
+    & + li {
+      margin-left: 20px;
+    }
+  }
+  .ql-editor {
+    padding: 0;
+  }
+}
+

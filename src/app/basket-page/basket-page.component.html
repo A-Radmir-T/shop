@@ -1,0 +1,112 @@
+<div class="wrapper">
+  <div class="content">
+    <header class="header">
+      <div class="container">
+        <div class="header__inner">
+          <div class="header__logo" routerLink="/">
+            <img src="./assets/log.png" alt="">
+          </div>
+        </div>
+      </div>
+    </header>
+    <main class="main">
+      <div class="container">
+        <div class="basket">
+          <div class="container">
+
+            <ng-template #empty>
+              <div class="text-center">
+                <p>Корзина пуста, добавьте что-нибудь из меню</p>
+                <div
+                  class="card__btn ma"
+                  [routerLink]="['/home', 'menu', 'set']"
+                >
+                  В меню
+                </div>
+              </div>
+            </ng-template>
+
+            <div class="basket__grid" *ngIf="orders.length; else empty">
+              <div class="basket__orders orders">
+                <div class="basket__title">
+                  <h2>Мой заказ</h2>
+
+                  <a id="clear" (click)="basketService.clear()">
+                    Очистить корзину
+                  </a>
+                </div>
+                <div class="order__item" *ngFor="let order of orders">
+
+                  <div class="order__product">
+                    <div class="order__image">
+                      <quill-view-html [content]="order.image"></quill-view-html>
+                    </div>
+                    <div class="order__description">
+                      <h3 class="order__title">{{ order.title }}</h3>
+                      <p class="order__weight">
+                        {{ order.weight }} г
+                      </p>
+                    </div>
+                  </div>
+
+                  <div class="order__info">
+                    <div class="order__count">
+                      <div
+                        class="order__decrement"
+                        (click)="decrement(order.id || '')"
+                      >
+                        <mat-icon>remove</mat-icon>
+                      </div>
+                      <div class="order__amount">{{ order.count }} шт</div>
+                      <div
+                        class="order__increment"
+                        (click)="increment(order.id || '')"
+                      >
+                        <mat-icon>add</mat-icon>
+                      </div>
+                    </div>
+
+                    <p class="order__price">
+                      {{ order.price * order.count }} руб
+                    </p>
+
+                    <div class="order__remove-wrap">
+                      <div
+                        class="order__remove"
+                        (click)="basketService.remove(order.id || '')"
+                      >
+                        <mat-icon>close</mat-icon>
+                      </div>
+                    </div>
+
+
+                  </div>
+
+                </div>
+              </div>
+
+              <div class="basket__card card">
+                <h3 class="card__title">
+                  Оформить заказ:
+                </h3>
+
+                <div class="card__total">
+                  Сумма к оплате: {{ sum }} руб
+                </div>
+
+                <div class="card__btn" routerLink="/checkout">
+                  ДОСТАВКА
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+
+
